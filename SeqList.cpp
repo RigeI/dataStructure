@@ -4,6 +4,9 @@ using namespace std;
 
 const int MaxSize=5;
 template<class DataType>
+
+//顺序表
+//封装数组和数组的操作
 class SeqList
 {
 private:
@@ -26,7 +29,7 @@ SeqList<DataType>::SeqList(DataType a[],int n)
 {
 	if(n>MaxSize) 
 	{
-		throw "非法参数";
+		cout<< "非法参数"<<endl;
 	}
 	for(int t=0;t<n;t++)
 	{
@@ -39,9 +42,8 @@ template<class DataType>
 DataType SeqList<DataType>::Get(int i)
 {	
 	if(i<1||i>length)
-
 	{
-		throw "查找位置非法";
+		cout<<"查找位置非法"<<endl;
 
 	}
 	return data[i-1];
@@ -61,11 +63,11 @@ void SeqList<DataType>::Insert(int i,DataType x)
 {
 	if(i>MaxSize)
 	{
-	throw "上溢";
+	cout<<"上溢"<<endl;
 	}
 	if(i<1||i>length+1)	
 	{
-		throw "插入位置错误";
+		cout<<"插入位置错误"<<endl;
 	}
 	for(int t=length;t>i-1;t--)
 	{
@@ -81,11 +83,11 @@ DataType SeqList<DataType>::Delete(int i)
 {
 	if(i==0)
 	{
-	throw "下溢";
+	    cout<<"下溢"<<endl;
 	}
 	if(i<1||i>length)	
 	{
-		throw "删除位置错误";
+		cout<<"删除位置错误"<<endl;
 	}
 	DataType x=data[i-1];
 	for(int t=i-1;t<length;t++)
