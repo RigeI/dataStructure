@@ -251,49 +251,49 @@ void LinkList<DataType>::Reverse()
 
 int main()
 {
-	LinkList<int> s;
+    LinkList<int> s;
     
-    	if(true)
-    	{
-	    cout<<"顺序插入元素并输出,输出应为1 2 3 4 5,长度为5"<<endl;
-		s.Insert(1,1);
-		s.Insert(2,2);
-		s.Insert(3,3);
-		s.Insert(4,4);
-		s.Insert(5,5);
-		s.PrintList();
+    if(true)
+    {
+        cout<<"顺序插入元素并输出,输出应为1 2 3 4 5,长度为5"<<endl;
+        s.Insert(1,1);
+        s.Insert(2,2);
+        s.Insert(3,3);
+        s.Insert(4,4);
+        s.Insert(5,5);
+        s.PrintList();
         
         cout<<"反转单链表"<<endl;
         s.Reverse();
-		s.PrintList();
-    	}
+        s.PrintList();
+    }
     	
-    	if(false)
-    	{
-    	s.Insert(1,5);
-		s.Insert(1,3);
-		s.Insert(2,4);
-		s.Insert(1,1);
-		s.Insert(2,2);
-    	cout<<"不按顺序插入,插入后的值应该为1 2 3 4 5"<<endl;
-		s.PrintList();
-		cout<<"元素1所在的位置为"<<s.Locate(1)<<endl;
-		cout<<"元素3所在的位置为"<<s.Locate(3)<<endl;
-		cout<<"元素5所在的位置为"<<s.Locate(5)<<endl;
-		cout<<"位置2的元素为"<<s.Get(2)<<endl;
-		cout<<"位置4的元素为"<<s.Get(4)<<endl;
-    	}
+    if(false)
+    {
+        s.Insert(1,5);
+        s.Insert(1,3);
+        s.Insert(2,4);
+        s.Insert(1,1);
+        s.Insert(2,2);
+        cout<<"不按顺序插入,插入后的值应该为1 2 3 4 5"<<endl;
+        s.PrintList();
+        cout<<"元素1所在的位置为"<<s.Locate(1)<<endl;
+        cout<<"元素3所在的位置为"<<s.Locate(3)<<endl;
+        cout<<"元素5所在的位置为"<<s.Locate(5)<<endl;
+        cout<<"位置2的元素为"<<s.Get(2)<<endl;
+        cout<<"位置4的元素为"<<s.Get(4)<<endl;
+    }
    	
-   	 	if(false)
-    	{
-        	cout<<"用数组初始化单链表,输出1 2 3 4 5"<<endl;
-	    	int arr[5]={1,2,3,4,5};
-	    	LinkList<int> t(arr,5);
-	    	t.PrintList();
-    	}	
-    	if(false)
-    	{
-    	    LinkList<int> t;
-    	    cout<<t.Length()<<endl;
-    	}
+    if(false)
+    {
+        cout<<"用数组初始化单链表,输出1 2 3 4 5"<<endl;
+        int arr[5]={1,2,3,4,5};
+        LinkList<int> t(arr,5);
+        t.PrintList();
+    }	
+    if(false)
+    {
+        LinkList<int> t;
+        cout<<t.Length()<<endl;
+    }
 }
