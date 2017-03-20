@@ -14,21 +14,21 @@ template<class DataType>
 class LinkList
 {
 private:
-	Node<DataType> *first;//单链表类,只需要给出头指针,所以数据成员只有头指针
+    Node<DataType> *first;//单链表类,只需要给出头指针,所以数据成员只有头指针
 public:
     //函数在实现的位置进行说明
     //这是个带头节点的链表
     //即有一个节点只保存指向下个元素的指针,此节点不保存数值
     //添加一个头节点的目的是统一"空表"与"非空表"的插入删除操作
-	LinkList();
-	LinkList(DataType a[],int n);
-	~LinkList();
-	int Length();
-	DataType Get(int i);
-	int Locate(DataType x);
-	void Insert(int i,DataType x);
-	DataType Delete(int i);
-	void PrintList();
+    LinkList();
+    LinkList(DataType a[],int n);
+    ~LinkList();
+    int Length();
+    DataType Get(int i);
+    int Locate(DataType x);
+    void Insert(int i,DataType x);
+    DataType Delete(int i);
+    void PrintList();
     void Reverse();
 };
 
