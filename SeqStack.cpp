@@ -75,11 +75,11 @@ DataType SeqStack<DataType>::Pop()
 
 
 
-
 int main()
 {
     SeqStack<int> seqStack;
     seqStack.Push(1);
     cout<<seqStack.Pop()<<endl;
+    //下溢
     cout<<seqStack.Pop()<<endl;
 }
