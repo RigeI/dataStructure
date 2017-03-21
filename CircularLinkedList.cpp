@@ -22,25 +22,25 @@ class CircularLinkedList
     // 只需用数组创建的对象
     // 析构时用约瑟夫环的方法析构,最后删除表头
 
-    private:
-        Node<DataType>* first;
-    public:
-        CircularLinkedList();
-        CircularLinkedList(DataType arr[],int n);
-        ~CircularLinkedList();
-        int Length();
-        void Kill(int num);
-        void PrintList();
+private:
+    Node<DataType>* first;
+public:
+    CircularLinkedList();
+    CircularLinkedList(DataType arr[],int n);
+    ~CircularLinkedList();
+    int Length();
+    void Kill(int num);
+    void PrintList();
 };
 
-    template<class DataType>
+template<class DataType>
 CircularLinkedList<DataType>::CircularLinkedList()
 {
     first=new Node<DataType>;
     first->next=first;
 }
 
-    template<class DataType>
+template<class DataType>
 CircularLinkedList<DataType>::CircularLinkedList(DataType arr[],int n)
 {
     first=new Node<DataType>;
@@ -57,7 +57,7 @@ CircularLinkedList<DataType>::CircularLinkedList(DataType arr[],int n)
 }
 
 
-    template<class DataType>
+template<class DataType>
 CircularLinkedList<DataType>::~CircularLinkedList()
 {
     Node<DataType> *p=first->next;
@@ -72,7 +72,7 @@ CircularLinkedList<DataType>::~CircularLinkedList()
 }
 
 
-    template<class DataType>
+template<class DataType>
 void CircularLinkedList<DataType>::PrintList()
 {
     Node<DataType>* p = first->next;
@@ -84,7 +84,7 @@ void CircularLinkedList<DataType>::PrintList()
 }
 
 
-    template<class DataType>
+template<class DataType>
 int CircularLinkedList<DataType>::Length()
 {
     Node<DataType>* p=first;
@@ -98,7 +98,7 @@ int CircularLinkedList<DataType>::Length()
 /**
  * 约瑟夫环
  */
-    template<class DataType>
+template<class DataType>
 void CircularLinkedList<DataType>::Kill(int num)
 {
     Node<DataType> *p=first;//工作指针,p->next将被删除
