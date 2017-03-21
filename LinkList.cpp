@@ -9,7 +9,6 @@ struct Node
 };
 
 
-
 template<class DataType>
 class LinkList
 {
@@ -31,6 +30,7 @@ public:
     void PrintList();
     void Reverse();
 };
+
 
 template<class DataType>
 LinkList<DataType>::LinkList()
@@ -74,6 +74,7 @@ LinkList<DataType>::LinkList(DataType a[],int n)
     }
 }
 
+
 template<class DataType>
 LinkList<DataType>::~LinkList()
 {
@@ -101,8 +102,6 @@ int LinkList<DataType>::Length()
     }
     return t;
 }
-
-
 
 
 template<class DataType>
@@ -190,7 +189,6 @@ DataType LinkList<DataType>::Delete(int i)
 }
 
 
-
 template<class DataType>
 void LinkList<DataType>::PrintList()
 {
@@ -202,6 +200,7 @@ void LinkList<DataType>::PrintList()
         p=p->next;
     }
 }
+
 
 template<class DataType>
 void LinkList<DataType>::Reverse()
@@ -247,6 +246,7 @@ void LinkList<DataType>::Reverse()
     q->next=p;
     first->next=q;
 }
+
 
 
 int main()
