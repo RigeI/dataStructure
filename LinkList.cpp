@@ -252,7 +252,6 @@ void LinkList<DataType>::Reverse()
 int main()
 {
     LinkList<int> s;
-    
     if(true)
     {
         cout<<"顺序插入元素并输出,输出应为1 2 3 4 5,长度为5"<<endl;
