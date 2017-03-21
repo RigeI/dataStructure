@@ -4,4 +4,10 @@
 
 ### 线性表
 * [顺序表](SeqList.cpp)
+* [单链表](LinkList.cpp)
+* [循环单链表](CircularLinkedList.cpp)
+
+### 栈
+* [顺序栈](SeqStack.cpp)
+* [链栈](LinkStack.cpp)
 
