@@ -6,8 +6,7 @@ using namespace std;
 
 bool isValidParentheses(string& s) 
 {
-    if(s.size()%2)
-        return false;
+    if(s.size()%2) return false;
 
     stack<char> a;
     string::iterator itstr;
@@ -22,27 +21,18 @@ bool isValidParentheses(string& s)
             temp = a.top();
             a.pop();
 
-            if(temp=='(')
-                if(')'!=*itstr)
-                    return false;
-
-            else if(temp=='{')
-                if('}'!=*itstr)
-                    return false;
-            else
-                if(']'!=*itstr)
-                    return false;
+            if(temp=='(' && ')'!=*itstr) return false;
+            if(temp=='{' && '}'!=*itstr) return false;
+            if(temp=='[' && ']'!=*itstr) return false;
         }
     }
-    if(!a.empty())
-    {
-        return false;
-    }
+
+    if(!a.empty()) return false;
     return true;
 }
 
 int main()
 {
-    string s="()";
+    string s="(([)])";
     cout<<isValidParentheses(s)<<endl;
 }
