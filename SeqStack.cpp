@@ -79,6 +79,16 @@ int main()
 {
     SeqStack<int> seqStack;
     seqStack.Push(1);
+    seqStack.Push(1);
+    seqStack.Push(1);
+    seqStack.Push(1);
+    seqStack.Push(1);
+    //上溢
+    seqStack.Push(1);
+    cout<<seqStack.Pop()<<endl;
+    cout<<seqStack.Pop()<<endl;
+    cout<<seqStack.Pop()<<endl;
+    cout<<seqStack.Pop()<<endl;
     cout<<seqStack.Pop()<<endl;
     //下溢
     cout<<seqStack.Pop()<<endl;

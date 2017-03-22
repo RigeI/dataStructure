@@ -18,9 +18,9 @@ struct Node
 template<class DataType>
 class CircularLinkedList
 { 
-    // 如果只实现约瑟夫环,可以简化类
-    // 只需用数组创建的对象
-    // 析构时用约瑟夫环的方法析构,最后删除表头
+// 如果只实现约瑟夫环,可以简化该类
+// 只需用数组创建的对象
+// 析构函数可以用这个类里的Kill方法析构,最后删除表头
 
 private:
     Node<DataType>* first;
@@ -101,31 +101,52 @@ int CircularLinkedList<DataType>::Length()
 template<class DataType>
 void CircularLinkedList<DataType>::Kill(int num)
 {
+
+    //首先假设num为7
+
     Node<DataType> *p=first;//工作指针,p->next将被删除
     Node<DataType> *q;//在p->next被删除之前保存p->next->next;
-    int t=1;
+    int t=1;//注意,t从１开始
+
+    //循环条件，如果p->next==p,则循环链表中只剩一个节点，且是头节点,在这种情况下退出循环
     while(p!=p->next)
     {   
+        //循环开始之前,p被初始化为头节点,那么头节点的下一个元素是第一个有值的节点
         p=p->next;
 
+        //因为循环链表里有头节点,所以每次遇到头节点都要跳过,否则影响num计数的次数
+        //此处当前指针指向头节点
         if(p==first)
         {
             p=p->next;
         }
 
+        //指针每次移动,移动次数+1,但移动次数里不包含头节点的移动
         t++;
-
+        
+        //每次是num的倍数时,也可以是每次是num时,进入if
+        //因为每次t都从1开始,所以到7的时候指针移动6次(不包指向头节点时指针的移动)
+        //也就是说指针指向要被删除的元素的前一个元素
         if(t%num==0)
         { 
+            //同要需要排除头节点的干扰
+            //这次的情况是,当前指针指向的"下一个"元素是头节点,与上面不同
+            //如果直接删除,就会删除掉头节点,所以需要跳过
             if(p->next==first)
             {
                 p=p->next;
             }
-
+            
+            //让q指向被删除元素的下一个元素
+            //p是被删除元素的前一个元素
             q=p->next->next;
+            //输出被删除元素的值
             cout<<p->next->data<<endl;
+            //释放被删除元素占用的空间
             delete p->next;
+            //链接p和q
             p->next=q;
+            //t重置为1,继续循环
             t=1;
         }
     }
