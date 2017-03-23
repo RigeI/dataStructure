@@ -86,4 +86,10 @@ int main()
         <<cirQueue.DeQueue()<<endl
         <<cirQueue.DeQueue()<<endl
         <<cirQueue.DeQueue()<<endl;
+    
+    cout<<"空队列测试"<<endl;
+    cout<<cirQueue.Empty()<<endl;
+
+    CirQueue<int> emptyQueue;
+    cout<<emptyQueue.Empty()<<endl;
 }
