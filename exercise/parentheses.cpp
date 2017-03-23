@@ -1,5 +1,6 @@
 //有效的括号序列
-
+//原题测试数据不足
+//如果"))"应该返回false
 #include<iostream>
 #include<stack>
 using namespace std;
@@ -18,7 +19,9 @@ bool isValidParentheses(string& s)
         
         else
         {
+            if(a.empty())    return false;
             temp = a.top();
+            cout<<temp<<endl;
             a.pop();
 
             if(temp=='(' && ')'!=*itstr) return false;
@@ -33,6 +36,6 @@ bool isValidParentheses(string& s)
 
 int main()
 {
-    string s="(([)])";
+    string s="))";
     cout<<isValidParentheses(s)<<endl;
 }
