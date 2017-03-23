@@ -1,14 +1,14 @@
 #include<iostream>
 using namespace std;
 
-//一下运算均为模5
+//以下运算均为模5
 //队列的大小为5
-//队列里只能存放4个元素
 //添加元素时rear向后移动
 //删除元素时front向后移动
 //当front==rear时,为空
 //当rear+1==front时,为满
 //如果存放5个元素，则空和满均为front==rear
+//所以队列里只能存放4个元素
 const int QueueSize=5;
 
 template <class DataType>
