@@ -10,7 +10,6 @@ private:
     int length;
 public:
     SeqSet(){length=0;}
-    SeqSet(DataType a[],int n);
     ~SeqSet(){}
     int Length(){return length;}
     DataType Get(int i){return data[i];}

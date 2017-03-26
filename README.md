@@ -11,6 +11,7 @@
 
 ### 集合
 * [顺序表实现的集合](src/SeqSet.cpp)
+* [单链表实现的集合](src/LinkSet.cpp)
 
 ### 栈
 * [顺序栈](src/SeqStack.cpp)
