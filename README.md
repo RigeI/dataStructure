@@ -1,11 +1,15 @@
 # 数据结构
 
+* 个人水平有限,大佬们觉得哪里有问题尽管Pull requests
+
 ## 基本数据结构的实现
 
 ### 线性表
 * [顺序表](src/SeqList.cpp)
 * [单链表](src/LinkList.cpp)
 * [循环单链表](src/CircularLinkedList.cpp)
+
+### 集合
 * [顺序表实现的集合](src/SeqSet.cpp)
 
 ### 栈
@@ -17,7 +21,10 @@
 * [循环队列](src/CirQueue.cpp)
 * [链队列](src/LinkQueue.cpp)
 
+
 ## 经典题目
 * [汉诺塔](exercise/hanoi.cpp)
 * [括号匹配](exercise/parentheses.cpp)
 * [KMP算法](exercise/kmp.cpp)
+
+
