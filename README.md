@@ -20,3 +20,4 @@
 ## 经典题目
 * [汉诺塔](exercise/hanoi.cpp)
 * [括号匹配](exercise/parentheses.cpp)
+* [KMP算法](exercise/kmp.cpp)
