@@ -6,6 +6,7 @@
 * [顺序表](src/SeqList.cpp)
 * [单链表](src/LinkList.cpp)
 * [循环单链表](src/CircularLinkedList.cpp)
+* [顺序表实现的集合](src/SeqSet.cpp)
 
 ### 栈
 * [顺序栈](src/SeqStack.cpp)

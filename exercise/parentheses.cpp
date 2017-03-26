@@ -21,7 +21,6 @@ bool isValidParentheses(string& s)
         {
             if(a.empty())    return false;
             temp = a.top();
-            cout<<temp<<endl;
             a.pop();
 
             if(temp=='(' && ')'!=*itstr) return false;
@@ -36,6 +35,6 @@ bool isValidParentheses(string& s)
 
 int main()
 {
-    string s="))";
+    string s="([()]){}";
     cout<<isValidParentheses(s)<<endl;
 }
