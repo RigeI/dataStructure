@@ -8,8 +8,9 @@
 * [循环单链表](src/CircularLinkedList.cpp)
 
 ### 集合
-* [顺序表实现的集合](src/SeqSet.cpp)
-* [单链表实现的集合](src/LinkSet.cpp)
+* [集合(数组实现)](src/SeqSet.cpp)
+* [集合(链表实现,集合操作使用成员函数)](src/LinkSet.cpp)
+* [集合(链表实现,集合操作使用友元函数)](src/LinkSet_friend.cpp)
 
 ### 栈
 * [顺序栈](src/SeqStack.cpp)
