@@ -6,6 +6,8 @@ using namespace std;
  * 函数在类外定义
  * 实现起来较为复杂
  * 所以把友元函数的定义直接写在类里面
+ *
+ * 如果不用以上方法写,容易造成链接错误
  * 非要写在外面的同学请自行参考
  * https://isocpp.org/wiki/faq/templates#template-friends
  * */
@@ -68,9 +70,8 @@ class LinkSet{
             }
             return result;
         }
-
-
 };
+
 
 template<class DataType>
 LinkSet<DataType>::LinkSet()
@@ -79,8 +80,6 @@ LinkSet<DataType>::LinkSet()
     s->next=NULL;
     first=s;
 }
-
-
 
 
 template<class DataType>
@@ -95,6 +94,7 @@ LinkSet<DataType>::~LinkSet()
     }
 }
 
+
 template<class DataType>
 bool LinkSet<DataType>::IsInSet(DataType x)
 {
@@ -107,6 +107,7 @@ bool LinkSet<DataType>::IsInSet(DataType x)
     return false;
 }
 
+
 template<class DataType>
 void LinkSet<DataType>::Insert(DataType x)
 {
@@ -117,6 +118,7 @@ void LinkSet<DataType>::Insert(DataType x)
     s->next = first->next;
     first->next=s;
 }
+
 
 template<class DataType>
 void LinkSet<DataType>::Delete(DataType x)
@@ -192,11 +194,4 @@ int main()
     cout<<"A-B: ";
     s5.PrintSet();
 }
-
-
-
-
-
-
-
 
