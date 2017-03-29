@@ -27,4 +27,4 @@
 * [括号匹配](exercise/parentheses.cpp)
 * [KMP算法](exercise/kmp.cpp)
 * [丑数](exercise/isUgly.cpp)
-
+* [欢乐数(放上这个题纯粹因为名字好听)](exercise/isHappy.cpp)
