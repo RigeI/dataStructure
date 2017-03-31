@@ -47,6 +47,11 @@ class LinkSet{
             return result;
         }
 
+        friend LinkSet<DataType> operator+(LinkSet<DataType> &set1,LinkSet<DataType> &set2)
+        {            
+            return Union(set1,set2);
+        }
+
         friend LinkSet<DataType> Intersection (LinkSet<DataType> &set1,LinkSet<DataType> &set2)//传入集合的引用,返回交集
         {
             LinkSet<DataType> result;
@@ -59,6 +64,12 @@ class LinkSet{
             return result;
         }
 
+        friend LinkSet<DataType> operator* (LinkSet<DataType> &set1,LinkSet<DataType> &set2)//传入集合的引用,返回交集
+        {
+            return Intersection(set1,set2);
+        }
+
+
         friend LinkSet<DataType> Difference (LinkSet<DataType> &set1,LinkSet<DataType> &set2)//差集的引用
         {
             LinkSet<DataType> result;
@@ -70,6 +81,13 @@ class LinkSet{
             }
             return result;
         }
+
+
+        friend LinkSet<DataType> operator- (LinkSet<DataType> &set1,LinkSet<DataType> &set2)//差集的引用
+        {
+            return Difference(set1,set2);
+        }
+
 };
 
 
@@ -183,14 +201,14 @@ int main()
     cout<<"集合B: ";
     s2.PrintSet();
 
-    LinkSet<int> s3=Union(s1,s2);
+    LinkSet<int> s3=s1+s2;
     cout<<"A+B: ";
     s3.PrintSet();
 
-    LinkSet<int> s4=Intersection(s1,s2);
-    cout<<"AB: ";
+    LinkSet<int> s4=s1*s2;;
+    cout<<"A*B: ";
     s4.PrintSet();
-    LinkSet<int> s5=Difference(s1,s2);
+    LinkSet<int> s5=s1-s2;
     cout<<"A-B: ";
     s5.PrintSet();
 }
