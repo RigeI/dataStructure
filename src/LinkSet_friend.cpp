@@ -47,11 +47,6 @@ class LinkSet{
             return result;
         }
 
-        friend LinkSet<DataType> operator+(LinkSet<DataType> &set1,LinkSet<DataType> &set2)
-        {            
-            return Union(set1,set2);
-        }
-
         friend LinkSet<DataType> Intersection (LinkSet<DataType> &set1,LinkSet<DataType> &set2)//传入集合的引用,返回交集
         {
             LinkSet<DataType> result;
@@ -64,12 +59,6 @@ class LinkSet{
             return result;
         }
 
-        friend LinkSet<DataType> operator* (LinkSet<DataType> &set1,LinkSet<DataType> &set2)//传入集合的引用,返回交集
-        {
-            return Intersection(set1,set2);
-        }
-
-
         friend LinkSet<DataType> Difference (LinkSet<DataType> &set1,LinkSet<DataType> &set2)//差集的引用
         {
             LinkSet<DataType> result;
@@ -80,6 +69,16 @@ class LinkSet{
                     result.Insert(p->data);
             }
             return result;
+        }
+
+        friend LinkSet<DataType> operator+(LinkSet<DataType> &set1,LinkSet<DataType> &set2)
+        {            
+            return Union(set1,set2);
+        }
+
+        friend LinkSet<DataType> operator* (LinkSet<DataType> &set1,LinkSet<DataType> &set2)//传入集合的引用,返回交集
+        {
+            return Intersection(set1,set2);
         }
 
 
@@ -100,6 +99,7 @@ LinkSet<DataType>::LinkSet()
 }
 
 
+    
 template<class DataType>
 LinkSet<DataType>::~LinkSet()
 {
@@ -184,7 +184,7 @@ int main()
        linkset.Delete(1);
        linkset.PrintSet();    
        */
-    
+
     cout<<"因为集合元素不分先后,所以使用头插法,输出的顺序与插入顺序相反"<<endl;
 
     LinkSet<int> s1;
