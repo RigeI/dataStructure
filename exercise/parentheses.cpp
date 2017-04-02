@@ -1,6 +1,6 @@
-//有效的括号序列
-//原题测试数据不足
-//如果"))"应该返回false
+// 有效的括号序列
+// 遇到左半个括号则入栈
+// 遇到右半个括号则出栈,并判断出栈元素是否与右半个括号匹配
 #include<iostream>
 #include<stack>
 using namespace std;

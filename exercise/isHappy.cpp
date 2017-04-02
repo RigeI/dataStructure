@@ -4,7 +4,13 @@
 //然后重复这个过程直到这个数变为1，或是无限循环但始终变不到1。
 //如果可以变为1，那么这个数就是快乐数。
 
-//哈哈哈哈哈哈这题好玩
+/*
+ * 求大神证明
+ * 欢乐数在循环中必定出现
+ * 0 1 4
+ * 当中的某一个
+ */
+
 
 #include<iostream>
 #include<cmath>
@@ -25,6 +31,10 @@ bool isHappy(int n)
         }
         if(sum==1) return true;
         if(sum==0) return false;
+
+        //等于4的时候返回false
+        //在只要出现和为4的情况就一定不会出现和为1的情况
+        //希望大神可以给出证明
         if(sum==4) return false;
         temp=sum;
     }

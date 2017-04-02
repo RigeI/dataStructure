@@ -7,6 +7,16 @@
 #include<iostream>
 using namespace std;
 
+
+// 给出程序终止条件
+// 如果num为 0 1 2 3 5则终止
+// 0没有质引子 为假
+// 1是题目中给出的　必为真
+// 只有2 3 5　才会真中用到递归
+// 如果一个数是2 3 5的倍数
+// 则求其与2 3 5的商
+// 并判断商是否为2 3 5的倍数
+// 若商不是,则为假
 bool isUgly(int num) 
 {
     if(num==0) return false;
@@ -20,7 +30,6 @@ bool isUgly(int num)
     else if(num%5==0) return isUgly(num/5);
     return false;
 }
-
 
 int main()
 {
