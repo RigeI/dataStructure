@@ -1,3 +1,5 @@
+//同顺序表
+
 #include<iostream>
 #include<string>
 using namespace std;

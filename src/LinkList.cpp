@@ -4,7 +4,7 @@ using namespace std;
 template<class DataType>
 struct Node
 {
-    DataType data;//节点的值
+    DataType data;//结点的值
     Node<DataType> *next;//指向下个元素的指针
 };
 

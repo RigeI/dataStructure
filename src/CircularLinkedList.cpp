@@ -1,12 +1,12 @@
-﻿/**
- * 带头节点的循环链表
- * 解决约瑟夫环问题
- **/
-
-
+﻿//带头节点的循环链表
+//请先自行了解约瑟夫患
 
 #include<iostream>
 using namespace std;
+
+//节点声明跟其他的相同
+//一个数据
+//一个指向下个数据的指针
 template<class DataType>
 struct Node
 {
@@ -18,21 +18,18 @@ struct Node
 template<class DataType>
 class CircularLinkedList
 { 
-// 如果只实现约瑟夫环,可以简化该类
-// 只需用数组创建的对象
-// 析构函数可以用这个类里的Kill方法析构,最后删除表头
-
 private:
-    Node<DataType>* first;
+    Node<DataType>* first;//循环单链表需要头指针
 public:
     CircularLinkedList();
-    CircularLinkedList(DataType arr[],int n);
+    CircularLinkedList(DataType arr[],int n);//用尾插法的构造函数
     ~CircularLinkedList();
     int Length();
-    void Kill(int num);
+    void Kill(int num);// 输出约瑟夫环出链表的顺序
     void PrintList();
 };
 
+//同单链表
 template<class DataType>
 CircularLinkedList<DataType>::CircularLinkedList()
 {
@@ -40,6 +37,8 @@ CircularLinkedList<DataType>::CircularLinkedList()
     first->next=first;
 }
 
+
+//同单链表
 template<class DataType>
 CircularLinkedList<DataType>::CircularLinkedList(DataType arr[],int n)
 {
@@ -57,6 +56,7 @@ CircularLinkedList<DataType>::CircularLinkedList(DataType arr[],int n)
 }
 
 
+//同单链表
 template<class DataType>
 CircularLinkedList<DataType>::~CircularLinkedList()
 {
@@ -71,7 +71,7 @@ CircularLinkedList<DataType>::~CircularLinkedList()
     delete first;
 }
 
-
+//同单链表
 template<class DataType>
 void CircularLinkedList<DataType>::PrintList()
 {
@@ -83,7 +83,7 @@ void CircularLinkedList<DataType>::PrintList()
     }
 }
 
-
+//同单链表
 template<class DataType>
 int CircularLinkedList<DataType>::Length()
 {

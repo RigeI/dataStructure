@@ -1,11 +1,16 @@
 #include<iostream>
 using namespace std;
 
+//链队列
+//只能在尾插入
+//头删除
+//操作过程类似单链表
+
 template<class DataType>
 struct Node
 {
-    DataType data;//节点的值
-    Node<DataType> *next;//指向下个元素的指针
+    DataType data;
+    Node<DataType> *next;
 };
 
 

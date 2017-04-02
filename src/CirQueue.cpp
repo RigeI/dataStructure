@@ -27,7 +27,8 @@ public:
 };
 
 
-
+//入队
+//操作类似顺序表
 template <class DataType>
 void CirQueue<DataType>::EnQueue(DataType x)
 {
@@ -40,7 +41,8 @@ void CirQueue<DataType>::EnQueue(DataType x)
     rear=(rear+1)%QueueSize;
 }
 
-
+//出队
+//操作类似顺序表
 template <class DataType>
 DataType CirQueue<DataType>::DeQueue()
 {
@@ -53,6 +55,7 @@ DataType CirQueue<DataType>::DeQueue()
     return temp;
 }
 
+//得到队头元素
 template <class DataType>
 DataType CirQueue<DataType>::GetQueue()
 {

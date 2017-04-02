@@ -1,7 +1,8 @@
 #include<iostream>
 using namespace std;
 
-
+//操作同顺序表
+//实现同链表实现的集合
 const int MaxSize=5;
 template<class DataType>
 class SeqSet{
