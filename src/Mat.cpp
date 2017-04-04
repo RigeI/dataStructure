@@ -25,7 +25,7 @@ class Matrix
         void Show();
 };
 
-    template<class DataType>
+template<class DataType>
 Matrix<DataType>::Matrix(DataType arr[M][N])
 {
     int i,j;
