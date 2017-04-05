@@ -23,7 +23,7 @@
 
 ### 矩阵
 * [十字链表](src/Matrix.cpp)
-* [二位数组](src/Arrays.cpp)
+* [二维数组](src/Arrays.cpp)
 
 ## 经典题目
 * [汉诺塔](exercise/hanoi.cpp)
