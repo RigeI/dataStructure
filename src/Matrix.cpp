@@ -169,15 +169,11 @@ int main()
 {
     int a[]={1,2,3,4,5,6};
     Arrays<int> arr(3,2,a);
+    Matrix<int> m(arr);
     cout<<"Arrays的print方法:"<<endl;
     arr.print();
-    cout<<"--------------------"<<endl;
-    Matrix<int> m(arr);
-    cout<<"Matrix的Show方法:"<<endl;
-    m.Show();
-    cout<<"--------------------"<<endl;
-    
-    cout<<"用Matrix的getData循环输出:"<<endl;
+    cout<<"--------------------------"<<endl;
+    cout<<"Matrix的getData循环输出:"<<endl;
     for(int i=0;i<3;i++)
     {
         for(int j=0;j<2;j++)
@@ -186,7 +182,12 @@ int main()
         }
     cout<<endl;
     }
-    cout<<"--------------------"<<endl;
+    cout<<"--------------------------"<<endl;
+    cout<<"Matrix的Show方法:"<<endl;
+    m.Show();
+    cout<<"--------------------------"<<endl;
+    
+
     
   
     

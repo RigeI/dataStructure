@@ -38,12 +38,7 @@ Arrays<DataType>::~Arrays()
     cout<<"Arrays析构:"<<endl
         <<"a:"<<arr<<endl;
 
-    if(this->arr)
-    {
-        DataType *q=this->arr;
-        this->arr=NULL;
-        delete q;
-    }
+    delete arr;
 }
 
 
@@ -83,4 +78,4 @@ void Arrays<DataType>::print()
    Arrays<int> b(3,2,a);
    b.print();
    }
-*/
+   */
