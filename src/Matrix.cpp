@@ -23,6 +23,7 @@ class Matrix
         Matrix(Arrays<DataType> &arr);
         ~Matrix();
         DataType getData(int x,int y);
+        void setData(int x,int y,DataType data);
         void Show();
 };
 
@@ -35,7 +36,7 @@ Matrix<DataType>::Matrix(Arrays<DataType> &arr)
     const int Max=max(arr.getLength(),arr.getWidth());
     Node<DataType> *h[Max],*p,*q,*r;
     mh = new Node<DataType>;
-    
+
     //矩阵头指针保存行列数
     mh->row=arr.getLength();    
     mh->col=arr.getWidth();
@@ -87,6 +88,7 @@ template<class DataType>
 
 Matrix<DataType>::~Matrix()
 {
+    int h=0;
     cout<<"Matrix析构:"<<endl;
     Node<DataType>  *p,*q,*r;
     p=mh->link;
@@ -98,15 +100,15 @@ Matrix<DataType>::~Matrix()
         {
             q=p;
             p=p->down;
-            cout<<"q:"<<q<<endl;
+            cout<<q->data<<" : "<<q<<" right : "<<q->right<<" down : "<<q->down<<endl;
             delete q;
         }
-        
+
         p=r->link;
-        cout<<"r:"<<r<<endl;
+        cout<<"h["<<h++<<"]: "<<r<<" right : "<<r->right<<" down : "<<r->down<<endl;
         delete r;
     }
-    cout<<"h:"<<mh<<endl;
+    cout<<"头节点:"<<mh<<endl;
     delete mh;
 
 }
@@ -118,7 +120,7 @@ DataType Matrix<DataType>::getData(int x,int y)
 {
     Node<DataType> *p=mh->link;
     Node<DataType> *q;
-    
+
     //右移
     for(int i=0;i<y;i++)
     {
@@ -135,7 +137,7 @@ DataType Matrix<DataType>::getData(int x,int y)
             p=p->down;
         }
     }
-    
+
 
     //cout<<"("<<p->row<<","<<p->col<<") : "<<p->data<<endl;
     if(p->row==x && p->col==y)
@@ -144,20 +146,108 @@ DataType Matrix<DataType>::getData(int x,int y)
         return (DataType)0;
 }
 
+template<class DataType>
+
+void Matrix<DataType>::setData(int x,int y,DataType data)
+{  
+
+    Node<DataType> *p=mh->link;
+    Node<DataType> *q,*r;
+
+    //右移
+    for(int i=0;i<y;i++)
+    {
+        p=p->link;
+    }
+
+    //下移
+    q=p;
+    for(int j=0;j<=x;j++)
+    {
+        if((p->down->row<x)&&(p->down!=q))
+        {
+            p=p->down;
+        }
+    }
+
+
+    //cout<<"("<<p->row<<","<<p->col<<") : "<<p->data<<endl;
+
+
+
+    if(p->down->row==x && p->down->col==y)
+    {
+        p->down->data=data;
+        if(!data)
+        {
+            r=p->down;
+            p->down=r->down;
+
+            p=mh->link;
+            //下移
+            for(int i=0;i<x;i++)
+            {
+                p=p->link;
+            } 
+            //右移
+            q=p;
+            for(int j=0;j<y;j++)
+            {
+                if((p->right->row<y)&&(p->right!=q))
+                {
+                    p=p->down;
+                }
+            }
+            p->right=r->right;
+
+
+            delete r;
+        }
+    }
+    else
+    {
+        Node<DataType> *s = new Node<DataType>;
+        s->data=data;
+        s->row=x;
+        s->col=y;
+        s->down=p->down;
+        p->down=s;
+
+        p=mh->link;
+        //下移
+        for(int i=0;i<x;i++)
+        {
+            p=p->link;
+        } 
+        //右移
+        q=p;
+        for(int j=0;j<y;j++)
+        {
+            if((p->right->row<x)&&(p->right!=q))
+            {
+                p=p->down;
+            }
+        }
+
+        s->right=p->right;
+        p->right=s;
+    }
+}
+
+
 
 template<class DataType>
 
 void Matrix<DataType>::Show()
 {
     Node<DataType> *p,*q;
-    cout<<mh->row<<"行"<<mh->col<<"列:\n"<<endl;
     p=mh->link;
     while(p!=mh)
     {
         q=p->right;
         while(p!=q)
         {
-            cout<<q->row<<" "<<q->col<<" "<<q->data<<endl;
+            cout<<"("<<q->row<<","<<q->col<<") "<<q->data<<endl;
             q=q->right;
         }
         p=p->link;
@@ -167,29 +257,25 @@ void Matrix<DataType>::Show()
 
 int main()
 {
-    int a[]={1,2,3,4,5,6};
-    Arrays<int> arr(3,2,a);
+    int a[]={0,2,0,0,0,6,7,0,0};
+    Arrays<int> arr(3,3,a);
     Matrix<int> m(arr);
+    m.setData(0,0,1);
+    m.setData(0,1,0);
     cout<<"Arrays的print方法:"<<endl;
     arr.print();
     cout<<"--------------------------"<<endl;
     cout<<"Matrix的getData循环输出:"<<endl;
     for(int i=0;i<3;i++)
     {
-        for(int j=0;j<2;j++)
+        for(int j=0;j<3;j++)
         {
             cout<<m.getData(i,j)<<" ";
         }
-    cout<<endl;
+        cout<<endl;
     }
     cout<<"--------------------------"<<endl;
     cout<<"Matrix的Show方法:"<<endl;
     m.Show();
-    cout<<"--------------------------"<<endl;
-    
-
-    
-  
-    
+    cout<<"--------------------------"<<endl;   
 }
-
