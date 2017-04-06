@@ -10,7 +10,7 @@
 ### 集合
 * [数组实现](src/SeqSet.cpp)
 * [链表实现](src/LinkSet.cpp)
-* [链表实现,友元函数)](src/LinkSet_friend.cpp)
+* [链表实现,友元函数](src/LinkSet_friend.cpp)
 
 ### 栈
 * [顺序栈](src/SeqStack.cpp)

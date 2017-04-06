@@ -36,7 +36,7 @@ template<class DataType>
 Arrays<DataType>::~Arrays()
 {
     cout<<"Arrays析构:"<<endl
-        <<"a:"<<arr<<endl;
+        <<"数组:\t"<<arr<<endl;
 
     delete arr;
 }

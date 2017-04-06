@@ -100,15 +100,15 @@ Matrix<DataType>::~Matrix()
         {
             q=p;
             p=p->down;
-            cout<<q->data<<" : "<<q<<" right : "<<q->right<<" down : "<<q->down<<endl;
+            cout<<q->data<<":\t"<<q<<"\tright:\t"<<q->right<<"\tdown:\t"<<q->down<<endl;
             delete q;
         }
 
         p=r->link;
-        cout<<"h["<<h++<<"]: "<<r<<" right : "<<r->right<<" down : "<<r->down<<endl;
+        cout<<"h["<<h++<<"]:\t"<<r<<"\tright:\t"<<r->right<<"\tdown:\t"<<r->down<<endl;
         delete r;
     }
-    cout<<"头节点:"<<mh<<endl;
+    cout<<"头节点:\t"<<mh<<endl;
     delete mh;
 
 }
@@ -169,11 +169,6 @@ void Matrix<DataType>::setData(int x,int y,DataType data)
             p=p->down;
         }
     }
-
-
-    //cout<<"("<<p->row<<","<<p->col<<") : "<<p->data<<endl;
-
-
 
     if(p->down->row==x && p->down->col==y)
     {
