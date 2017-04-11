@@ -248,7 +248,7 @@ void LinkList<DataType>::Reverse()
 }
 
 
-
+/*
 int main()
 {
     LinkList<int> s;
@@ -296,3 +296,5 @@ int main()
         cout<<t.Length()<<endl;
     }
 }
+
+*/

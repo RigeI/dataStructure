@@ -25,6 +25,9 @@
 * [十字链表](src/Matrix.cpp)
 * [二维数组](src/Arrays.cpp)
 
+### 树
+* [二叉数](src/BiTree.cpp)
+
 ## 经典题目
 * [汉诺塔](exercise/hanoi.cpp)
 * [括号匹配](exercise/parentheses.cpp)
