@@ -25,6 +25,7 @@ class BiTree
     public:
         BiTree(){root=Create(root);}
         ~BiTree(){Release(root);}
+        BiNode<DataType>* Root(){return root;}
         void PreOrder(){PreOrder(root);}
         void InOrder(){InOrder(root);}
         void PostOrder(){PostOrder(root);}
@@ -111,6 +112,7 @@ void BiTree<DataType>::PostOrder(BiNode<DataType> *bt)
 }
 
 template<class DataType>
+
 void BiTree<DataType>::LeverOrder()
 {
     if(!root) return;
@@ -128,34 +130,42 @@ void BiTree<DataType>::LeverOrder()
 }
 
 
-int main()
-{
-    BiTree<char> b;
-    b.PreOrder();
-    cout<<endl;
-    b.InOrder();
-    cout<<endl;
-    b.PostOrder();
-    cout<<endl;
-    b.LeverOrder();
-    cout<<endl;
+
+
+template<class DataType>
+
+bool IsEqual(BiNode<DataType> *a,BiNode<DataType> *b)
+{   
+    if(a==NULL&&b==NULL){
+        return true;
+    }else if(a==NULL^b==NULL){
+        return false;
+    }else if(a->data!=b->data){
+        return false;
+    }else{
+        return IsEqual(a->lchild,b->lchild)
+            &&IsEqual(a->rchild,b->rchild);
+    }
 }
 
 
+template<class DataType>
 
+bool IsChild(BiNode<DataType> *a,BiNode<DataType> *b)
+{
+    if(!b) return true;
+    else if(!a) return false;
+    else if(IsEqual(a,b)) return true;
+    else if(IsChild(a->lchild,b)) return true;
+    else if(IsChild(a->rchild,b)) return true;
+    else return false;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+int main()
+{
+    BiTree<char> a;
+    BiTree<char> b;
+    cout<<IsChild(a.Root(),b.Root())<<endl;
+}
 
 
