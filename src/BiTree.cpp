@@ -1,5 +1,7 @@
 #include<iostream>
 #include<queue>
+#include<vector>
+#include<string>
 
 using namespace std;
 
@@ -21,7 +23,8 @@ class BiTree
         void PreOrder(BiNode<DataType> *bt);
         void InOrder(BiNode<DataType> *bt);
         void PostOrder(BiNode<DataType> *bt);
-
+        void Invert(BiNode<DataType> *bt);
+        vector<string> TreePaths(BiNode<DataType> *bt);
     public:
         BiTree(){root=Create(root);}
         ~BiTree(){Release(root);}
@@ -30,6 +33,8 @@ class BiTree
         void InOrder(){InOrder(root);}
         void PostOrder(){PostOrder(root);}
         void LeverOrder();
+        void Invert(){Invert(root);}
+        vector<string> TreePaths(){return TreePaths(root);}
 };
 
 
@@ -161,11 +166,69 @@ bool IsChild(BiNode<DataType> *a,BiNode<DataType> *b)
     else return false;
 }
 
+
+template<class DataType>
+
+void BiTree<DataType>::Invert(BiNode<DataType> *bt)
+{
+    if(bt==NULL) return;
+    else{
+        BiNode<DataType> *temp;
+        temp = bt->lchild;
+        bt->lchild = bt->rchild;
+        bt->rchild = temp;
+    }
+    Invert(bt->lchild);
+    Invert(bt->rchild);
+}
+
+template<class DataType>
+
+vector<string> BiTree<DataType>::TreePaths(BiNode<DataType> *bt)
+{
+    string ts="";
+    vector<string> ans;
+    if(!bt) return ans;
+    queue<string> qs;
+    queue<BiNode<DataType> *> q;
+    BiNode<DataType> *temp;
+    q.push(bt);
+    qs.push(ts+bt->data);
+    while(!q.empty())
+    {
+        temp = q.front();
+        q.pop();
+        ts = qs.front();
+        qs.pop();
+        if(temp->lchild==NULL&&temp->rchild==NULL)
+        {
+            //cout<<ts<<endl;
+            ans.push_back(ts);
+        }
+        if(temp->lchild)
+        {
+            q.push(temp->lchild);
+            qs.push(ts+"->"+(temp->lchild->data));
+        }
+        if(temp->rchild)
+        {
+            q.push(temp->rchild);
+            qs.push(ts+"->"+(temp->rchild->data));
+        }
+    }
+    return ans;
+}
+
+
+
 int main()
 {
     BiTree<char> a;
-    BiTree<char> b;
-    cout<<IsChild(a.Root(),b.Root())<<endl;
+    vector<string> v = a.TreePaths();
+    for(string n : v) 
+    {
+        cout << n << '\n';
+    }
 }
 
 
