@@ -26,7 +26,8 @@
 * [二维数组](src/Arrays.cpp)
 
 ### 树
-* [二叉数](src/BiTree.cpp)
+* [二叉树](src/BiTree.cpp)
+* [二叉搜索树](src/BST.cpp)
 
 ## 经典题目
 * [汉诺塔](exercise/hanoi.cpp)
