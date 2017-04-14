@@ -58,14 +58,12 @@ void BST::PreOrder(TreeNode *root){
     }
 }
 
-void BST::LeverOrder()
-{
+void BST::LeverOrder(){
     if(!root) return;
     queue< TreeNode * > q;
     TreeNode *temp;
     q.push(root);
-    while(!q.empty())
-    {
+    while(!q.empty()){
         temp=q.front();
         q.pop();
         cout<<temp->val<<" ";
