@@ -20,6 +20,7 @@ class BiTree
         BiNode<DataType> *root;
         BiNode<DataType> *Create(BiNode<DataType> *bt);
         void Release(BiNode<DataType> *bt);
+        void PreOrderLeaf(BiNode<DataType> *bt);
         void PreOrder(BiNode<DataType> *bt);
         void InOrder(BiNode<DataType> *bt);
         void PostOrder(BiNode<DataType> *bt);
@@ -30,10 +31,12 @@ class BiTree
         ~BiTree(){Release(root);}
         BiNode<DataType>* Root(){return root;}
         void PreOrder(){PreOrder(root);}
+        void PreOrderLeaf(){PreOrderLeaf(root);}
         void InOrder(){InOrder(root);}
         void PostOrder(){PostOrder(root);}
         void LeverOrder();
         void Invert(){Invert(root);}
+        int NodeCount();
         vector<string> TreePaths(){return TreePaths(root);}
 };
 
@@ -85,6 +88,18 @@ void BiTree<DataType>::PreOrder(BiNode<DataType> *bt)
         PreOrder(bt->rchild);
     }
 }
+template<class DataType>
+
+void BiTree<DataType>::PreOrderLeaf(BiNode<DataType> *bt)
+{
+    if(!bt) return;
+    else
+    {
+        if(bt->lchild==NULL && bt->rchild==NULL) cout<<bt->data<<" ";
+        PreOrderLeaf(bt->lchild);
+        PreOrderLeaf(bt->rchild);
+    }
+}
 
 
 
@@ -133,6 +148,28 @@ void BiTree<DataType>::LeverOrder()
         if(temp->rchild) q.push(temp->rchild);
     }
 }
+
+template<class DataType>
+
+int BiTree<DataType>::NodeCount()
+{
+  
+    if(!root) return 0 ;
+    queue< BiNode<DataType> * > q;
+    int count=0;
+    BiNode<DataType> *temp;
+    q.push(root);
+    while(!q.empty())
+    {
+        temp=q.front();
+        q.pop();
+        count++;
+        if(temp->lchild) q.push(temp->lchild);
+        if(temp->rchild) q.push(temp->rchild);
+    }  
+    return count;
+}
+
 
 
 
@@ -224,11 +261,15 @@ vector<string> BiTree<DataType>::TreePaths(BiNode<DataType> *bt)
 int main()
 {
     BiTree<char> a;
+
     vector<string> v = a.TreePaths();
     for(string n : v) 
     {
         cout << n << '\n';
     }
+    a.PreOrderLeaf();
+    cout<<endl;
+    cout<<a.NodeCount()<<endl;
 }
 
 

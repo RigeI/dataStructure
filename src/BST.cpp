@@ -18,11 +18,13 @@ class BST{
         TreeNode *sortedArrayToBST(vector<int> &A);
         void InOrder(TreeNode *);
         void PreOrder(TreeNode *);
+        TreeNode* Insert(TreeNode*,int);
     public:
         BST(vector<int> &A){root=sortedArrayToBST(A);}
         void InOrder (){InOrder(root);}
         void PreOrder(){PreOrder(root);}
         void LeverOrder();
+        void Insert(int x){Insert(root,x);}
 };
 
 TreeNode* BST::sortedArrayToBST(vector<int> &A){
@@ -38,6 +40,15 @@ TreeNode* BST::sortedArrayToBST(vector<int> &A){
         s->right=sortedArrayToBST(right);
     }
     return s;
+}
+
+TreeNode* BST::Insert(TreeNode *root,int x)
+{
+    if(!root) root = new TreeNode(x);
+    else if(root->val>x) root->left=Insert(root->left,x);
+    else root->right=Insert(root->right,x);
+    return root;
+
 }
 
 void BST::InOrder(TreeNode *root){
@@ -79,16 +90,19 @@ int main(){
     vector<int> v;
     v.push_back(1);
     v.push_back(2);
-    v.push_back(3);
-    v.push_back(4);
-    v.push_back(5);
-    v.push_back(6);
-    v.push_back(7);
     BST bst(v);
     bst.InOrder();
     cout<<endl;
-    bst.PreOrder();
+    bst.LeverOrder();
+    cout<<endl;
+    
+    bst.Insert(3);
+    bst.Insert(0);
+    bst.Insert(4);
+    
+    bst.InOrder();
     cout<<endl;
     bst.LeverOrder();
     cout<<endl;
+
 }
