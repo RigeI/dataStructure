@@ -4,7 +4,7 @@
 
 ### 线性表
 * [顺序表]
-* [单链表](src/LinkList.cpp)
+* [单链表]
 * [循环单链表](src/CircularLinkedList.cpp)
 
 ### 集合
