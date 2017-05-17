@@ -23,7 +23,7 @@
 
 ### 矩阵
 * [十字链表](src/Matrix.cpp)
-* [二维数组](src/Arrays.cpp)
+* [二维数组](src/Arrays.md)
 
 ### 树
 * [二叉树](src/BiTree.cpp)

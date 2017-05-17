@@ -1,3 +1,4 @@
+```
 #include<iostream>
 using namespace std;
 
@@ -69,13 +70,14 @@ void Arrays<DataType>::print()
             cout<<endl;
     }
 }
+```
 
-
-/*
-   int main()
-   {
+0. 主函数测试
+```
+int main()
+{
    int a[]={1,2,3,4,5,6};
    Arrays<int> b(3,2,a);
    b.print();
-   }
-   */
+}
+```
