@@ -5,7 +5,7 @@
 ### 线性表
 * [顺序表](src/SeqList.cpp)
 * [单链表](src/LinkList.cpp)
-* [循环单链表](src/CircleList.cpp)
+* [循环单链表](src/CircularLinkedList.cpp)
 
 ### 集合
 * [数组实现](src/SeqSet.cpp)
