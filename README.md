@@ -3,7 +3,7 @@
 ## 基本数据结构的实现
 
 ### 线性表
-* [顺序表](src/SeqList.cpp)
+* [顺序表]
 * [单链表](src/LinkList.cpp)
 * [循环单链表](src/CircularLinkedList.cpp)
 
