@@ -1,6 +1,13 @@
 #include<iostream>
 using namespace std;
 
+
+void swap(int &a,int &b)
+{
+    int temp=a;
+    a=b;
+    b=temp;
+}
 /**
  * 说明:
  * 大根堆,即跟必须为最大的节点
@@ -16,7 +23,6 @@ using namespace std;
 void Sift(int r[],int k,int m)
 {
 
-    int temp;
     int i = k;
     int j=2*i;
     while(j<=m)
@@ -30,9 +36,7 @@ void Sift(int r[],int k,int m)
 
         // 否则交换位置
         else{
-            temp=r[j-1];
-            r[j-1]=r[i-1];
-            r[i-1]=temp;
+            swap(r[j-1],r[i-1]);
 
             // 交换位置导致原本子树的大根堆被破坏
             // 所以要对该子树进行调整
@@ -52,8 +56,6 @@ void Sift(int r[],int k,int m)
 
 void HeapSort(int r[],int n)
 {
-    int temp;
-
     for(int i = n/2;i>=1;i--)
     {
         // 由于Sift的应用条件是,i节点的子树必须为大根堆,
@@ -65,9 +67,7 @@ void HeapSort(int r[],int n)
     for(int i =1;i<n;i++)
     {
         // 交换第一个节点和最后一个节点
-        temp=r[0];
-        r[0]=r[n-i];
-        r[n-i]=temp;
+        swap(r[0],r[n-i]);
         // 此时最后一个节点为最大值
         // 开始循环后
         // 待排序的最大值总被放到待排序数组的最后
@@ -80,14 +80,13 @@ void HeapSort(int r[],int n)
 
 int main()
 {
-    int t=7;
-    int a[7] = {-9,-1,1,4,2,0,-2};
+    int t=8;
+    int a[] = {9,-1,1,4,2,0,-2,10};
     HeapSort(a,t);
     for(int i=0;i<t;i++)
     {
         cout<<a[i]<<" ";
     }
     cout<<endl;
-    //-9 -2 -1 0 1 2 4
 }
 
