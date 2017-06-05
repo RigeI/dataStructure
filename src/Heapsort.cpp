@@ -88,5 +88,6 @@ int main()
         cout<<a[i]<<" ";
     }
     cout<<endl;
+    //-9 -2 -1 0 1 2 4
 }
 
