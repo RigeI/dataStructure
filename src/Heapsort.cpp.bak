@@ -9,7 +9,7 @@ using namespace std;
  * 除了被筛选节点和其左右儿子,该节点子树均为大根堆
  *
  * 参数:
- * r[] 为待调整数组
+ * r[] 为待调整数组,r[0]为预留位置
  * k 为被筛选的节点,从k,2k,2k+1中寻找最大值放在k的位置
  * m 为需要进行筛选的二叉堆的节点个数
  * */
@@ -22,17 +22,18 @@ void Sift(int r[],int k,int m)
     while(j<=m)
     {
         // j 定位到值最大的儿子
-        if(j+1<=m && r[j-1]<r[j]) j++;  
+        // if(j<m && r[j]<r[j+1]) j++;  
+        if(j+1<=m && r[j]<r[j+1]) j++;  
 
         // j 位置的值比 i 位置的小
         // 为大根堆,不需要调整
-        if(r[j-1]<r[i-1]) break;    
+        if(r[j]<r[i]) break;    
 
         // 否则交换位置
         else{
-            temp=r[j-1];
-            r[j-1]=r[i-1];
-            r[i-1]=temp;
+            temp=r[j];
+            r[j]=r[i];
+            r[i]=temp;
 
             // 交换位置导致原本子树的大根堆被破坏
             // 所以要对该子树进行调整
@@ -45,15 +46,15 @@ void Sift(int r[],int k,int m)
 /**
  * 说明:
  * 堆排序
- *
  * 参数:
- * r[] 为被排序数组,n为数组元素个数
+ * r[] 为被排序数组,第一个元素为预留元素,n为数组元素个数
  * */
 
 void HeapSort(int r[],int n)
 {
     int temp;
 
+    //for(int i = n/2;i>=1;i--)
     for(int i = n/2;i>=1;i--)
     {
         // 由于Sift的应用条件是,i节点的子树必须为大根堆,
@@ -65,9 +66,9 @@ void HeapSort(int r[],int n)
     for(int i =1;i<n;i++)
     {
         // 交换第一个节点和最后一个节点
-        temp=r[0];
-        r[0]=r[n-i];
-        r[n-i]=temp;
+        temp=r[1];
+        r[1]=r[n-i+1];
+        r[n-i+1]=temp;
         // 此时最后一个节点为最大值
         // 开始循环后
         // 待排序的最大值总被放到待排序数组的最后
@@ -80,13 +81,18 @@ void HeapSort(int r[],int n)
 
 int main()
 {
-    int t=7;
-    int a[7] = {-9,-1,1,4,2,0,-2};
+    int t=6;
+    int a[6] = {-1,1,4,2,0,-2};
     HeapSort(a,t);
-    for(int i=0;i<t;i++)
+    for(int i=1;i<t;i++)
     {
-        cout<<a[i]<<" ";
+        cout<<a[i]<<endl;
     }
-    cout<<endl;
 }
+
+
+
+
+
+
 
