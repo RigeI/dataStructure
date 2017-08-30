@@ -4,7 +4,7 @@
 using namespace std;
 
 void PowerSet(char list[],int n){
-    for(int i=0;i<pow(2,n);i++){
+    for(int i=0;i<1<<n;i++){
         cout<<'{';
         for(int t=0;t<n;t++)
             if((1<<t)&i) cout<<list[t];
@@ -13,6 +13,8 @@ void PowerSet(char list[],int n){
 }
 
 int main(){
-    char list[]="abc";
-    PowerSet(list,3);
+    char list[]="abcdefg";
+    // list 包括\0 
+    // 减1正好为字符个数
+    PowerSet(list,sizeof(list)-1);
 }
