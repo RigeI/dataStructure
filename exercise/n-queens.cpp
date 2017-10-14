@@ -51,7 +51,7 @@ void sloveNQueens(int end){
         // 删除最后一个数,并将开始位置+1
         begin = current_value[current_value.size()-1]+1;
         current_value.pop_back();
-        // 最大检测到end-1,若要从end开始检测,表示已经结束,推出循环
+        // 最大检测到end-1,若要从end开始检测,表示已经结束,退出循环
         if(begin==end&&current_value.size()==0){
             break;
         }
