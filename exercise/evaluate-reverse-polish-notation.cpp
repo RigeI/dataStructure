@@ -35,8 +35,6 @@ void calculate(string op,stack<int> &s){
     case '/':
         s.push(a/b);
         break;
-        
-        
     }
 }
 
