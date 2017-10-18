@@ -7,8 +7,7 @@
 using namespace std;
 
 class Map{
-
-public:
+private:
     int m[9][9];
 
 public:
@@ -19,8 +18,9 @@ public:
     void set(int x,int y,int value);
     void show();
 };
+
 class Sudoku{
-public:
+private:
     /* 定义地图,并将所有点初始化为0 */
     Map m;
     /* 保存状态 */
@@ -44,9 +44,7 @@ public:
     bool strategy2();
     /* 假定某个点的值,并继续填表,如果出现错误,则回退到一正确状态 */
     bool strategy3();
-    /* 尝试填表 */
-    void solve();
-
+    
     /* 该行能放value的位置数 */
     int numOfThisRowCanPutValue(int value,int row);
     /* 在row行放置value */
@@ -66,21 +64,22 @@ public:
     queue<pair<int,int> > allLocateOfValues(int value);
 
 public:
-
     void init();
     void show();
-
+    void solve();
 };
+
 int main(){
     Sudoku sudoku;
     sudoku.init();
-    while(sudoku.strategy1()||sudoku.strategy2());
-    sudoku.strategy3();
+    sudoku.solve();
     sudoku.show();
- }
+}
+
 void Sudoku::init(){
     m.init();
 }
+
 bool Sudoku::conflict(const int x,const int y,const int value){
     // 本身有值
     if(m.get(x,y)>0){
@@ -102,9 +101,9 @@ bool Sudoku::conflict(const int x,const int y,const int value){
             }
         }
     }
-
     return false;
 }
+
 int Sudoku::numOfNoConflict(const int x,const int y){
     int num=0;
     for(int i=1;i<=9;i++){
@@ -114,6 +113,7 @@ int Sudoku::numOfNoConflict(const int x,const int y){
     }
     return num;
 }
+
 int Sudoku::valueOfNoConflict(const int x,const int y){
     for(int i=1;i<=9;i++){
         if(!conflict(x,y,i)){
@@ -122,46 +122,12 @@ int Sudoku::valueOfNoConflict(const int x,const int y){
     }
     return -1;
 }
+
 void Sudoku::show(){
     m.show();
 }
-void Map::show(){
-    for(int i=0;i<9;i++){
-        for(int j=0;j<9;j++){
-            if(get(i,j)){
-                cout<<get(i,j)<<" ";
-            }else{
-                cout<<"  ";
-            }
-            if(j!=8&&j%3==2){
-                cout<<"|";
-            }
-        }
-        cout<<endl;
-        if(i!=8&&i%3==2){
-            cout<<"--------------------"<<endl;
-        }
-    }
-}
-bool Sudoku::strategy1(){
-    bool change=false;
-    int flag=1;
-    while(flag){
-        flag=0;
-        for(int i=0;i<9;i++){
-            for(int j=0;j<9;j++){
-                if(numOfNoConflict(i,j)==1){
-                    flag=1;
-                    change=true;
-                    m.set(i,j,valueOfNoConflict(i,j));
-                    //cout<<'['<<i<<','<<j<<"]="<<m.get(i,j)<<endl;
-                    continue;
-                }
-            }
-        }
-    }
-    return change;
-}
+
+
 int Sudoku::numOfThisRowCanPutValue(int value,int row){
     int cnt=0;
     // 给出行,遍历列
@@ -172,6 +138,7 @@ int Sudoku::numOfThisRowCanPutValue(int value,int row){
     }
     return cnt;
 }
+
 int Sudoku::numOfThisColCanPutValue(int value,int col){
     int cnt=0;
     // 给出列,遍历行
@@ -182,6 +149,7 @@ int Sudoku::numOfThisColCanPutValue(int value,int col){
     }
     return cnt;
 }
+
 int Sudoku::numOfThisBlockCanPutValue(int value,int block){
     int cnt=0;
     int x=3*(block/3);
@@ -196,23 +164,23 @@ int Sudoku::numOfThisBlockCanPutValue(int value,int block){
     }
     return cnt;
 }
+
 void Sudoku::putValueOnThisRow(int value,int row){
     for(int col=0;col<9;col++){
         if(!conflict(row,col,value)){
             m.set(row,col,value);
-            //cout<<"["<<row<<','<<col<<"]="<<m.get(row,col)<<endl;
-
         }
     }
 }
+
 void Sudoku::putValueOnThisCol(int value,int col){
     for(int row=0;row<9;row++){
         if(!conflict(row,col,value)){
             m.set(row,col,value);
-            //cout<<"["<<row<<','<<col<<"]="<<m.get(row,col)<<endl;
         }
     }
 }
+
 void Sudoku::putValueOnThisBlock(int value,int block){
     
     int x=3*(block/3);
@@ -222,11 +190,30 @@ void Sudoku::putValueOnThisBlock(int value,int block){
         for(int col=y;col<y+3;col++){
             if(!conflict(row,col,value)){
                 m.set(row,col,value);
-                //cout<<"["<<row<<','<<col<<"]="<<m.get(row,col)<<endl;
             }
         }
     }
 }
+
+bool Sudoku::strategy1(){
+    bool change=false;
+    int flag=1;
+    while(flag){
+        flag=0;
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                if(numOfNoConflict(i,j)==1){
+                    flag=1;
+                    change=true;
+                    m.set(i,j,valueOfNoConflict(i,j));
+                    continue;
+                }
+            }
+        }
+    }
+    return change;
+}
+
 bool Sudoku::strategy2(){
     bool change=false;
     int flag=1;
@@ -268,13 +255,11 @@ bool Sudoku::strategy3(){
     for(int i=0;i<(int)values.size();i++){
         queue<pair<int,int> > q = allLocateOfValues(values[i]);
         while(!q.empty()){
-            //cout<<q.front().first<<"\t"<<q.front().second<<endl;
             pair<int,int> p=q.front();
             q.pop();
             save();
             m.set(p.first,p.second,values[i]);
             while(strategy1()||strategy2());
-            //show();
             if(success()){
                 return true;
             }
@@ -295,11 +280,8 @@ bool Sudoku::strategy3(){
     return false;
 }
 
-bool cmp(pair<int,int> a,pair<int,int> b){
-    return a.second>b.second;
-}
-
 vector<int> Sudoku::sortedValues(){
+    // 如果按某个合适的次序给出效率会更高
     vector<int> ret;
     ret.push_back(1);
     ret.push_back(2);
@@ -333,6 +315,7 @@ void Sudoku::save(){
     }
     s.push(t);
 }
+
 void Sudoku::restore(){
     Map t=s.top();
     for(int i=0;i<81;i++){
@@ -340,6 +323,7 @@ void Sudoku::restore(){
     }
     s.pop();
 }
+
 bool Sudoku::success(){
     for(int i=0;i<81;i++){
         if(m.get(i)==0){
@@ -348,6 +332,7 @@ bool Sudoku::success(){
     }
     return true;
 }
+
 bool Sudoku::wrong(){
     for(int i=0;i<81;i++){
         int x=i/9;
@@ -358,7 +343,10 @@ bool Sudoku::wrong(){
     }
     return false;
 }
+
 void Sudoku::solve(){
+    while(strategy1()||strategy2());
+    strategy3();
 }
 
 int Map::get(int n){
@@ -366,21 +354,44 @@ int Map::get(int n){
     int y=n%9;
     return m[x][y];
 }
+
 int Map::get(int x,int y){
     return m[x][y];
 }
+
 void Map::set(int n,int value){
     int x=n/9;
     int y=n%9;
     m[x][y]=value;
 }
+
 void Map::set(int x,int y,int value){
     m[x][y]=value;
 }
+
 void Map::init(){
     for(int i=0;i<9;i++){
         for(int j=0;j<9;j++){
             cin>>m[i][j];
+        }
+    }
+}
+
+void Map::show(){
+    for(int i=0;i<9;i++){
+        for(int j=0;j<9;j++){
+            if(get(i,j)){
+                cout<<get(i,j)<<" ";
+            }else{
+                cout<<"  ";
+            }
+            if(j!=8&&j%3==2){
+                cout<<"|";
+            }
+        }
+        cout<<endl;
+        if(i!=8&&i%3==2){
+            cout<<"--------------------"<<endl;
         }
     }
 }
