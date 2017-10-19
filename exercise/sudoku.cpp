@@ -45,9 +45,9 @@ private:
     /* 假定某个点的值,并继续填表,如果出现错误,则回退到一正确状态 */
     bool strategy3();
     
-    /* 该行能放value的位置数 */
+    /* 该row行能放value的位置数 */
     int numOfThisRowCanPutValue(int value,int row);
-    /* 在row行放置value */
+    /* 配合上个函数,在row行放置value */
     void putValueOnThisRow(int value,int row);
     
     /* 该列能放value的位置数 */
@@ -60,7 +60,9 @@ private:
     /* 在block放置value */
     void putValueOnThisBlock(int value,int block);
 
+    /* 返回一个高效的广度有限搜索的遍历次序 */
     vector<int> sortedValues();
+    /* 获取value可填写的所有位置 */
     queue<pair<int,int> > allLocateOfValues(int value);
 
 public:
