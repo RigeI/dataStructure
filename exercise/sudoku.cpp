@@ -20,7 +20,7 @@ public:
 };
 
 class Sudoku{
-public:
+private:
     /* 定义地图,并将所有点初始化为0 */
     Map m;
     /* 保存状态 */
