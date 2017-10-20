@@ -20,7 +20,7 @@ public:
 };
 
 class Sudoku{
-private:
+public:
     /* 定义地图,并将所有点初始化为0 */
     Map m;
     /* 保存状态 */
@@ -251,30 +251,25 @@ bool Sudoku::strategy2(){
     }
     return change;
 }
+
 bool Sudoku::strategy3(){
-    if(success()) return true;
     vector<int> values=sortedValues();
-    for(int i=0;i<(int)values.size();i++){
-        queue<pair<int,int> > q = allLocateOfValues(values[i]);
-        while(!q.empty()){
-            pair<int,int> p=q.front();
-            q.pop();
-            save();
-            m.set(p.first,p.second,values[i]);
-            while(strategy1()||strategy2());
-            if(success()){
-                return true;
-            }
-            if(wrong()){
-                restore();
-                continue;
-            }
-            if(q.empty()&&i==(int)values.size()-1){
-                return false;
-            }
-            if(strategy3()){
-                return true;
-            } else{
+    if(values.size()==0) return true;
+    queue<pair<int,int> > q = allLocateOfValues(values[0]);
+
+    while(!q.empty()){ 
+        pair<int,int> p=q.front();
+        q.pop();
+        save();
+        m.set(p.first,p.second,values[0]);
+        while(strategy1()||strategy2());
+        if(success()){
+            return true;
+        }else if(wrong()){
+            restore();
+        }else{
+            bool state=strategy3();
+            if(!state){
                 restore();
             }
         }
@@ -282,18 +277,40 @@ bool Sudoku::strategy3(){
     return false;
 }
 
+struct PAIR{
+    int first;
+    int second;
+    PAIR(int first,int second){
+        this->first=first;
+        this->second=second;
+    }
+};
+
+bool cmp(const PAIR p1,const PAIR p2){
+    return p1.second>p2.second;
+}
+
+
 vector<int> Sudoku::sortedValues(){
-    // 如果按某个合适的次序给出效率会更高
     vector<int> ret;
-    ret.push_back(1);
-    ret.push_back(2);
-    ret.push_back(3);
-    ret.push_back(4);
-    ret.push_back(5);
-    ret.push_back(6);
-    ret.push_back(7);
-    ret.push_back(8);
-    ret.push_back(9);
+    map<int,int> t;
+
+    for(int i=0;i<81;i++){
+        t[m.get(i)]++;
+    }
+
+    vector<PAIR> v;
+    for(map<int,int>::iterator it=t.begin();it!=t.end();it++){
+        v.push_back(PAIR((*it).first,(*it).second));
+    }
+    sort(v.begin(),v.end(),cmp);
+
+    for(vector<PAIR>::iterator it=v.begin();it!=v.end();it++){
+        if((*it).second==9||(*it).first==0){
+            continue;
+        }
+        ret.push_back((*it).first);
+    }
     return ret;
 }
 
@@ -327,19 +344,24 @@ void Sudoku::restore(){
 }
 
 bool Sudoku::success(){
+    int sum=0;
     for(int i=0;i<81;i++){
-        if(m.get(i)==0){
-            return false;
-        }
+        sum+=m.get(i);
     }
-    return true;
+    if(sum==450){
+        return true;
+    }else{
+        return false;
+    }
+
 }
 
 bool Sudoku::wrong(){
+    // 这里写错了
     for(int i=0;i<81;i++){
         int x=i/9;
         int y=i%9;
-        if(!(m.get(i)&&numOfNoConflict(x,y))){
+        if(!(m.get(i)||numOfNoConflict(x,y))){
             return true;
         }
     }
