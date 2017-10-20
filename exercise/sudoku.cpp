@@ -21,7 +21,7 @@ public:
 
 class Sudoku{
 private:
-    /* 定义地图,并将所有点初始化为0 */
+    /* 定义地图 */
     Map m;
     /* 保存状态 */
     stack<Map> s;
@@ -60,7 +60,7 @@ private:
     /* 在block放置value */
     void putValueOnThisBlock(int value,int block);
 
-    /* 返回一个高效的广度有限搜索的遍历次序 */
+    /* 返回一个高效的广度优先搜索的遍历次序 */
     vector<int> sortedValues();
     /* 获取value可填写的所有位置 */
     queue<pair<int,int> > allLocateOfValues(int value);
@@ -83,19 +83,16 @@ void Sudoku::init(){
 }
 
 bool Sudoku::conflict(const int x,const int y,const int value){
-    // 本身有值
     if(m.get(x,y)>0){
         return true;
     }
 
-    // 行列判断
     for(int i=0;i<9;i++){
         if(m.get(x,i)==value||m.get(i,y)==value){
             return true;
         }
     }
 
-    // 小方格判断
     for(int i=3*(x/3);i<3*(x/3)+3;i++){
         for(int j=3*(y/3);j<3*(y/3)+3;j++){
             if(m.get(i,j)==value){
@@ -132,7 +129,6 @@ void Sudoku::show(){
 
 int Sudoku::numOfThisRowCanPutValue(int value,int row){
     int cnt=0;
-    // 给出行,遍历列
     for(int col=0;col<9;col++){
         if(!conflict(row,col,value)){
             cnt++;
@@ -143,7 +139,6 @@ int Sudoku::numOfThisRowCanPutValue(int value,int row){
 
 int Sudoku::numOfThisColCanPutValue(int value,int col){
     int cnt=0;
-    // 给出列,遍历行
     for(int row=0;row<9;row++){
         if(!conflict(row,col,value)){
             cnt++;
@@ -222,7 +217,6 @@ bool Sudoku::strategy2(){
     while(flag){
         flag=0;
         for(int value=1;value<=9;value++){
-            // 第row行可以填i的位置数
             for(int row=0;row<9;row++){
                 if(numOfThisRowCanPutValue(value,row)==1){
                     flag=1;
@@ -230,7 +224,6 @@ bool Sudoku::strategy2(){
                     putValueOnThisRow(value,row);
                 }
             }
-            // 第col列可以填i的位置数
             for(int col=0;col<9;col++){
                 if(numOfThisColCanPutValue(value,col)==1){
                     flag=1;
@@ -238,8 +231,6 @@ bool Sudoku::strategy2(){
                     putValueOnThisCol(value,col);
                 }
             }
-
-            // 测试未通过
             for(int block=0;block<9;block++){
                 if(numOfThisBlockCanPutValue(value,block)==1){
                     flag=1;
@@ -357,7 +348,6 @@ bool Sudoku::success(){
 }
 
 bool Sudoku::wrong(){
-    // 这里写错了
     for(int i=0;i<81;i++){
         int x=i/9;
         int y=i%9;
