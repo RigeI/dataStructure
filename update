@@ -1,4 +1,5 @@
 #!/bin/bash
+DATE=`date +%Y-%m-%d%t%H:%M:%S`
 git add .
-git commit -m"更新"
+git commit -m"$DATE"
 git push origin master
