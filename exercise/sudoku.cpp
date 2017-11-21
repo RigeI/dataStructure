@@ -7,68 +7,68 @@
 using namespace std;
 
 class Map{
-private:
-    int m[9][9];
+    private:
+        int m[9][9];
 
-public:
-    void init();
-    int get(int n);
-    int get(int x,int y);
-    void set(int n,int value);
-    void set(int x,int y,int value);
-    void show();
+    public:
+        void init();
+        int get(int n);
+        int get(int x,int y);
+        void set(int n,int value);
+        void set(int x,int y,int value);
+        void show();
 };
 
 class Sudoku{
-private:
-    /* 定义地图 */
-    Map m;
-    /* 保存状态 */
-    stack<Map> s;
-    /* 判断在(x,y)点放value是否冲突 */
-    bool conflict(const int x,const int y,const int value);
-    /* 不冲突的个数 */
-    int numOfNoConflict(const int x,const int y);
-    /* 不冲突的值是几 */
-    int valueOfNoConflict(const int x,const int y);
-    /* 保存当前图状态 */
-    void save();
-    /* 恢复图状态 */
-    void restore();
-    /* 标识成功 */
-    bool success();
-    /* 一定失败 */
-    bool wrong();    
-    /* 基于数独定义的填表 */
-    bool strategy1();
-    bool strategy2();
-    /* 假定某个点的值,并继续填表,如果出现错误,则回退到一正确状态 */
-    bool strategy3();
-    
-    /* 该row行能放value的位置数 */
-    int numOfThisRowCanPutValue(int value,int row);
-    /* 配合上个函数,在row行放置value */
-    void putValueOnThisRow(int value,int row);
-    
-    /* 该列能放value的位置数 */
-    int numOfThisColCanPutValue(int value,int col);
-    /* 在col列放置value */
-    void putValueOnThisCol(int value,int col);
+    private:
+        /* 定义地图 */
+        Map m;
+        /* 保存状态 */
+        stack<Map> s;
+        /* 判断在(x,y)点放value是否冲突 */
+        bool conflict(const int x,const int y,const int value);
+        /* 不冲突的个数 */
+        int numOfNoConflict(const int x,const int y);
+        /* 不冲突的值是几 */
+        int valueOfNoConflict(const int x,const int y);
+        /* 保存当前图状态 */
+        void save();
+        /* 恢复图状态 */
+        void restore();
+        /* 标识成功 */
+        bool success();
+        /* 一定失败 */
+        bool wrong();    
+        /* 基于数独定义的填表 */
+        bool strategy1();
+        bool strategy2();
+        /* 假定某个点的值,并继续填表,如果出现错误,则回退到一正确状态 */
+        bool strategy3();
 
-    /* 该块能放value的位置数 */
-    int numOfThisBlockCanPutValue(int value,int block);
-    /* 在block放置value */
-    void putValueOnThisBlock(int value,int block);
+        /* 该row行能放value的位置数 */
+        int numOfThisRowCanPutValue(int value,int row);
+        /* 配合上个函数,在row行放置value */
+        void putValueOnThisRow(int value,int row);
 
-    /* 返回一个高效的广度优先搜索的遍历次序 */
-    vector<int> sortedValues();
-    /* 获取value可填写的所有位置 */
-    queue<pair<int,int> > allLocateOfValues(int value);
+        /* 该列能放value的位置数 */
+        int numOfThisColCanPutValue(int value,int col);
+        /* 在col列放置value */
+        void putValueOnThisCol(int value,int col);
 
-public:
-    void init();
-    void show();
-    void solve();
+        /* 该块能放value的位置数 */
+        int numOfThisBlockCanPutValue(int value,int block);
+        /* 在block放置value */
+        void putValueOnThisBlock(int value,int block);
+
+        /* 返回一个高效的广度优先搜索的遍历次序 */
+        vector<int> sortedValues();
+        /* 获取value可填写的所有位置 */
+        queue<pair<int,int> > allLocateOfValues(int value);
+
+    public:
+        void init();
+        void show();
+        void solve();
 };
 
 int main(){
@@ -179,7 +179,7 @@ void Sudoku::putValueOnThisCol(int value,int col){
 }
 
 void Sudoku::putValueOnThisBlock(int value,int block){
-    
+
     int x=3*(block/3);
     int y=3*(block%3);
 
