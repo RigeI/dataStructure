@@ -23,9 +23,9 @@ for circle in circles[0]:
     y = circle[1]
     r = circle[2]
     for point in points:
-        # 找出所有圆心之间的距离小于75(经验值)像素的，
-        # 小于75的一定是同一个零件里，两个里的近的圆，
-        # 记录两个圆心的中点,然后圆心连线(线可以不连,连上好看)
+        # 找出所有圆心距离小于75(经验值)像素的圆，
+        # 其一定为同一个零件里距离最近的两个圆，
+        # 记录两个圆心的中点,圆心连线(线可以不连,连上好看)
         if length(point, [x, y]) < 75:
             mids.append([(x+point[0])/2, (y+point[1])/2])
             cv2.line(img, (point[0], point[1]), (x, y), (0, 255, 0), 1)
@@ -36,7 +36,7 @@ for circle in circles[0]:
 # 遍历所有的圆心
 # 寻找与刚才记录的中点距离小于75(经验值)的圆心
 # 中点到该圆心的向量为方向向量
-# 中点到圆心线段的中点恰巧为图形的中点
+# 中点到圆心线段的中点恰巧为零件的中点
 for point in points:
     for mid in mids:
         if 60 < length(point, mid) < 75:
