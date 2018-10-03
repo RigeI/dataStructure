@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 //以下运算均为模5
@@ -9,36 +9,35 @@ using namespace std;
 //当rear+1==front时,为满
 //如果存放5个元素，则空和满均为front==rear
 //所以队列里只能存放4个元素
-const int QueueSize=5;
+const int QueueSize = 5;
 
 template <class DataType>
-class CirQueue
-{
+class CirQueue {
 private:
     DataType data[QueueSize];
-    int front,rear;
+    int front, rear;
+
 public:
-    CirQueue(){front=rear=0;}
-    ~CirQueue(){}
+    CirQueue() { front = rear = 0; }
+    ~CirQueue() {}
     void EnQueue(DataType x);
     DataType DeQueue();
     DataType GetQueue();
-    int Empty(){return front==rear?1:0;}
+    int Empty() { return front == rear ? 1 : 0; }
 };
-
 
 //入队
 //操作类似顺序表
 template <class DataType>
 void CirQueue<DataType>::EnQueue(DataType x)
 {
-    if((rear+1)%QueueSize==front%QueueSize)
-    {
-        cout<<"队列满,上溢"<<endl;;
+    if ((rear + 1) % QueueSize == front % QueueSize) {
+        cout << "队列满,上溢" << endl;
+        ;
         return;
     }
-    data[rear]=x;
-    rear=(rear+1)%QueueSize;
+    data[rear] = x;
+    rear = (rear + 1) % QueueSize;
 }
 
 //出队
@@ -46,12 +45,11 @@ void CirQueue<DataType>::EnQueue(DataType x)
 template <class DataType>
 DataType CirQueue<DataType>::DeQueue()
 {
-    if(Empty())
-    {
-        cout<<"队列空,下溢"<<endl;
+    if (Empty()) {
+        cout << "队列空,下溢" << endl;
     }
-    DataType temp=data[front];
-    front=(front+1)%QueueSize;
+    DataType temp = data[front];
+    front = (front + 1) % QueueSize;
     return temp;
 }
 
@@ -59,13 +57,11 @@ DataType CirQueue<DataType>::DeQueue()
 template <class DataType>
 DataType CirQueue<DataType>::GetQueue()
 {
-    if(Empty())
-    {
-        cout<<"队列空"<<endl;
+    if (Empty()) {
+        cout << "队列空" << endl;
     }
     return data[front];
 }
-
 
 int main()
 {
@@ -74,25 +70,25 @@ int main()
     cirQueue.EnQueue(2);
     cirQueue.EnQueue(3);
     cirQueue.EnQueue(4);
-    cout<<"得到队首元素1"<<endl
-        <<cirQueue.GetQueue()<<endl;
-    cout<<"1 2出队: "<<endl;
-    cout<<cirQueue.DeQueue()<<endl
-        <<cirQueue.DeQueue()<<endl;
-    
+    cout << "得到队首元素1" << endl
+         << cirQueue.GetQueue() << endl;
+    cout << "1 2出队: " << endl;
+    cout << cirQueue.DeQueue() << endl
+         << cirQueue.DeQueue() << endl;
+
     cirQueue.EnQueue(5);
     cirQueue.EnQueue(6);
 
-    cout<<"5 6入队"<<endl;
-    cout<<"3 4 5 6出队:"<<endl;
-    cout<<cirQueue.DeQueue()<<endl
-        <<cirQueue.DeQueue()<<endl
-        <<cirQueue.DeQueue()<<endl
-        <<cirQueue.DeQueue()<<endl;
-    
-    cout<<"空队列测试"<<endl;
-    cout<<cirQueue.Empty()<<endl;
+    cout << "5 6入队" << endl;
+    cout << "3 4 5 6出队:" << endl;
+    cout << cirQueue.DeQueue() << endl
+         << cirQueue.DeQueue() << endl
+         << cirQueue.DeQueue() << endl
+         << cirQueue.DeQueue() << endl;
+
+    cout << "空队列测试" << endl;
+    cout << cirQueue.Empty() << endl;
 
     CirQueue<int> emptyQueue;
-    cout<<emptyQueue.Empty()<<endl;
+    cout << emptyQueue.Empty() << endl;
 }

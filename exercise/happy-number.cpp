@@ -11,40 +11,38 @@
  * 当中的某一个
  */
 
-
-#include<iostream>
-#include<cmath>
+#include <cmath>
+#include <iostream>
 using namespace std;
 
-bool isHappy(int n) 
+bool isHappy(int n)
 {
-    int temp=n;
+    int temp = n;
     int sum;
 
-    while(1)
-    { 
-        sum=0;
-        while(temp!=0)
-        {
-            sum+=pow(temp%10,2);
-            temp=temp/10;
+    while (1) {
+        sum = 0;
+        while (temp != 0) {
+            sum += pow(temp % 10, 2);
+            temp = temp / 10;
         }
-        if(sum==1) return true;
-        if(sum==0) return false;
+        if (sum == 1)
+            return true;
+        if (sum == 0)
+            return false;
 
         //等于4的时候返回false
         //在只要出现和为4的情况就一定不会出现和为1的情况
         //希望大神可以给出证明
-        if(sum==4) return false;
-        temp=sum;
+        if (sum == 4)
+            return false;
+        temp = sum;
     }
 }
 
-
 int main()
 {
-    for(int i=0;i<10000;i++)
-    {
-        cout<<i<<(isHappy(i)?"是":"不是")<<"欢乐数"<<endl;
+    for (int i = 0; i < 10000; i++) {
+        cout << i << (isHappy(i) ? "是" : "不是") << "欢乐数" << endl;
     }
 }

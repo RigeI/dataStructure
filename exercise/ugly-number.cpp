@@ -4,9 +4,8 @@
 //
 // 1是丑数
 
-#include<iostream>
+#include <iostream>
 using namespace std;
-
 
 // 给出程序终止条件
 // 如果num为 0 1 2 3 5则终止
@@ -17,24 +16,31 @@ using namespace std;
 // 则求其与2 3 5的商
 // 并判断商是否为2 3 5的倍数
 // 若商不是,则为假
-bool isUgly(int num) 
+bool isUgly(int num)
 {
-    if(num==0) return false;
-    else if(num==1) return true;
-    else if(num==2) return true;
-    else if(num==3) return true;
-    else if(num==5) return true;
+    if (num == 0)
+        return false;
+    else if (num == 1)
+        return true;
+    else if (num == 2)
+        return true;
+    else if (num == 3)
+        return true;
+    else if (num == 5)
+        return true;
 
-    if (num%2==0) return isUgly(num/2);
-    else if(num%3==0) return isUgly(num/3);
-    else if(num%5==0) return isUgly(num/5);
+    if (num % 2 == 0)
+        return isUgly(num / 2);
+    else if (num % 3 == 0)
+        return isUgly(num / 3);
+    else if (num % 5 == 0)
+        return isUgly(num / 5);
     return false;
 }
 
 int main()
 {
-    for(int i=0;i<20;i++)
-    {
-        cout<<i<<(isUgly(i)?"是":"不是")<<"丑数"<<endl;
+    for (int i = 0; i < 20; i++) {
+        cout << i << (isUgly(i) ? "是" : "不是") << "丑数" << endl;
     }
 }
